@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify API Test</title>
+  </head>
+  <body>
+    <h1>Spotify API Test</h1>
+    <p>Enter Spotify Playlist Link Below:</p>
+    <form id="form">
+      <input type="text" id="spotifyPlaylistURL" name="spotifyPlaylistURL" />
+      <input type="submit" value="Get Spotify Playlist ID" />
+    </form>
+    <p>Your Spotify Playlist ID is: <span id="output"></span></p>
+    <p>Test 1, Length is 22 Characters: <span id="test1"></span></p>
+    <p>Test 2, Contains Only Letters and Numbers: <span id="test2"></span></p>
+
+    <script>
+      function getSpotifyPlaylistId(event) {
+        const formInput = document.getElementById("spotifyPlaylistURL");
+        const result_id = formInput.value.substring(34, 56);
+        // TEST 1
+        const lengthCheck = result_id.length === 22;
+        // TEST 2
+        const lettersAndNumbersCheck = /^[A-Za-z0-9]*$/.test(result_id);
+        document.getElementById("output").innerHTML = result_id;
+        document.getElementById("test1").innerHTML = lengthCheck;
+        document.getElementById("test2").innerHTML = lettersAndNumbersCheck;
+        event.preventDefault();
+      }
+      form.addEventListener("submit", getSpotifyPlaylistId);
+    </script>
+  </body>
+</html>
